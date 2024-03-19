@@ -67,4 +67,8 @@ export const variant = StyleSheet.create({
     body7: {
         fontSize: 10,
     },
+    body7Semibold: {
+        fontSize: 10,
+        fontWeight: fontWeights.semibold,
+    },
 });

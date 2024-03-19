@@ -81,6 +81,7 @@ export default function HomeScreen() {
                             <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>만성</Text>
                             <Text style={[variant.heading1Bold, { color: COLOR.BLUE[500] }]}>{data.disease.chronic}</Text>
                         </View>
+                        <View style={styles.divider} />
                         <View style={styles.diseaseSubCard}>
                             <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>급성</Text>
                             <Text style={[variant.heading1Bold, { color: COLOR.DARK_GREY[500] }]}>{data.disease.acute}</Text>
@@ -179,6 +180,7 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: 'white',
         borderRadius: 14,
+        alignItems: 'center',
     },
     diseaseSubCard: {
         paddingTop: 20,
@@ -188,6 +190,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
+    divider: {
+        height: 117,
+        width: 1,
+        backgroundColor: COLOR.LIGHT_GREY[500],
+    },
     descriptionTextColor: {
         color: COLOR.DARK_GREY[500],
     },
