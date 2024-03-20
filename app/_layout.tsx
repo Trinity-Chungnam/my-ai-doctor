@@ -32,6 +32,7 @@ export default function RootLayout() {
     return (
         <Stack initialRouteName="(tabs)">
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="monitoring" options={{ headerShown: false }} />
         </Stack>
     );
 }

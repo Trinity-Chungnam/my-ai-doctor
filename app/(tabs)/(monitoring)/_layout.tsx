@@ -13,14 +13,6 @@ export default function MonitoringLayout() {
                     header: TabHeader,
                 }}
             />
-            <Stack.Screen
-                name="[id]"
-                options={{
-                    headerBackVisible: true,
-                    title: 'AI 모니터링 상세',
-                    header: TabHeader,
-                }}
-            />
         </Stack>
     );
 }

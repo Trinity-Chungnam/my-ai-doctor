@@ -1,13 +1,17 @@
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+import GoogleMapModal from '../../../components/Modal/GoogleMapModal';
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
 import { variant } from '../../../components/Text/token';
 import { COLOR } from '../../../src/tokens/color';
 
 export default function HomeScreen() {
+    const [isOpenGoogleMapModal, setIsOpenGoogleMapModal] = useState(false);
+    const [search, setSearch] = useState('');
     const data = {
         id: '123',
         name: '마이닥',
@@ -25,86 +29,113 @@ export default function HomeScreen() {
     };
 
     return (
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-            <ScreenWrapper style={styles.wrapper}>
-                <ShadowCard style={styles.shadowCard}>
-                    <View style={styles.cardContainer}>
-                        <Text style={[styles.whiteColor, variant.title1Semibold]}>
-                            {`${data.name} `}
-                            <Text style={variant.body1Semibold}>님</Text>
-                        </Text>
-                        <Text style={[styles.whiteColor, variant.body5Medium]}>
-                            *글자를 누르면 주간 운동과 식단이 제공됩니다
-                        </Text>
-                    </View>
-                    <View style={styles.subCard}>
-                        <View style={styles.subCardWrapper}>
-                            <View style={styles.subCardContent}>
-                                <Text style={[styles.subCardTitle, variant.body4Semibold]}>건강나이</Text>
-                                <Image source={require('../../../assets/images/person.png')} style={styles.imageSize} />
-                                <Text style={variant.heading1Semibold}>{data.healthyAge.origin}세</Text>
-                                <Text style={(variant.body7Semibold, { color: COLOR.ORANGE[500] })}>
-                                    {data.healthyAge.compare >= 0
-                                        ? '+' + data.healthyAge.compare + '세'
-                                        : data.healthyAge.compare + '세'}
+        <>
+            <ScrollView contentContainerStyle={styles.scrollContainer}>
+                <ScreenWrapper style={styles.wrapper}>
+                    <ShadowCard style={styles.shadowCard}>
+                        <View style={styles.cardContainer}>
+                            <Text style={[styles.whiteColor, variant.title1Semibold]}>
+                                {`${data.name} `}
+                                <Text style={variant.body1Semibold}>님</Text>
+                            </Text>
+                            <Text style={[styles.whiteColor, variant.body5Medium]}>
+                                *글자를 누르면 주간 운동과 식단이 제공됩니다
+                            </Text>
+                        </View>
+                        <View style={styles.subCard}>
+                            <View style={styles.subCardWrapper}>
+                                <View style={styles.subCardContent}>
+                                    <Text style={[styles.subCardTitle, variant.body4Semibold]}>건강나이</Text>
+                                    <Image source={require('../../../assets/images/person.png')} style={styles.imageSize} />
+                                    <Text style={variant.heading1Semibold}>{data.healthyAge.origin}세</Text>
+                                    <Text style={(variant.body7Semibold, { color: COLOR.ORANGE[500] })}>
+                                        {data.healthyAge.compare >= 0
+                                            ? '+' + data.healthyAge.compare + '세'
+                                            : data.healthyAge.compare + '세'}
+                                    </Text>
+                                </View>
+                                <View style={styles.subCardContent}>
+                                    <Text style={[styles.subCardTitle, variant.body4Semibold]}>주의</Text>
+                                    <Image source={require('../../../assets/images/liver.png')} style={styles.imageSize} />
+                                    <Text style={variant.heading1Semibold}>{data.waring}</Text>
+                                </View>
+                                <View style={styles.subCardContent}>
+                                    <Text style={[styles.subCardTitle, variant.body4Semibold]}>연령대 평균</Text>
+                                    <Image source={require('../../../assets/images/graph.png')} style={styles.imageSize} />
+                                    <Text style={variant.heading1Semibold}>{data.ageGroupAverage.origin}</Text>
+                                    <Text style={(variant.body7Semibold, { color: COLOR.ORANGE[500] })}>
+                                        {data.ageGroupAverage.compare >= 0
+                                            ? '+' + data.ageGroupAverage.compare + '점'
+                                            : data.ageGroupAverage.compare + '점'}
+                                    </Text>
+                                </View>
+                            </View>
+                            <View style={{ paddingHorizontal: 20, paddingVertical: 20 }}>
+                                <View style={styles.buttonWrapper}>
+                                    <Link href={`/monitoring/${data.id}`}>
+                                        <Text style={variant.body1Medium}>상세 정보 살펴보기</Text>
+                                    </Link>
+                                </View>
+                            </View>
+                        </View>
+
+                        <View style={styles.diseaseSubCardWrapper}>
+                            <View style={styles.diseaseSubCard}>
+                                <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>AI 닥터 추천 운동</Text>
+                                <Text style={[variant.heading1Bold, { color: COLOR.BLUE[500] }]}>
+                                    {data.recommendedExercise}
                                 </Text>
                             </View>
-                            <View style={styles.subCardContent}>
-                                <Text style={[styles.subCardTitle, variant.body4Semibold]}>주의</Text>
-                                <Image source={require('../../../assets/images/liver.png')} style={styles.imageSize} />
-                                <Text style={variant.heading1Semibold}>{data.waring}</Text>
-                            </View>
-                            <View style={styles.subCardContent}>
-                                <Text style={[styles.subCardTitle, variant.body4Semibold]}>연령대 평균</Text>
-                                <Image source={require('../../../assets/images/graph.png')} style={styles.imageSize} />
-                                <Text style={variant.heading1Semibold}>{data.ageGroupAverage.origin}</Text>
-                                <Text style={(variant.body7Semibold, { color: COLOR.ORANGE[500] })}>
-                                    {data.ageGroupAverage.compare >= 0
-                                        ? '+' + data.ageGroupAverage.compare + '점'
-                                        : data.ageGroupAverage.compare + '점'}
-                                </Text>
+                            <View style={styles.divider} />
+                            <View style={styles.diseaseSubCard}>
+                                <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>AI 닥터 추천 식단</Text>
+                                <Text style={[variant.heading1Bold]}>{data.recommendedDiet}</Text>
                             </View>
                         </View>
-                        <View style={{ paddingHorizontal: 20, paddingVertical: 20 }}>
-                            <View style={styles.buttonWrapper}>
-                                <Link href={`/${data.id}`}>
-                                    <Text style={variant.body1Medium}>상세 정보 살펴보기</Text>
-                                </Link>
-                            </View>
-                        </View>
-                    </View>
+                    </ShadowCard>
 
-                    <View style={styles.diseaseSubCardWrapper}>
-                        <View style={styles.diseaseSubCard}>
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>AI 닥터 추천 운동</Text>
-                            <Text style={[variant.heading1Bold, { color: COLOR.BLUE[500] }]}>{data.recommendedExercise}</Text>
+                    <View style={styles.vaccinationCard}>
+                        <View style={styles.vaccinationCardTitle}>
+                            <Text style={variant.title1Semibold}>추천 예방접종</Text>
+                            <Text style={[variant.body5Medium, styles.descriptionTextColor]}>
+                                *접종명을 누르면 접종 예약이 가능합니다
+                            </Text>
                         </View>
-                        <View style={styles.divider} />
-                        <View style={styles.diseaseSubCard}>
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>AI 닥터 추천 식단</Text>
-                            <Text style={[variant.heading1Bold]}>{data.recommendedDiet}</Text>
+                        <View style={styles.vaccinationSubCardWrapper}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    setSearch('씨앤뉴 내과 (전남 무안군 삼향읍 유교길 1)');
+                                    setIsOpenGoogleMapModal(true);
+                                }}
+                            >
+                                <View style={styles.vaccinationItem}>
+                                    <Text style={[variant.body1Medium]}>B형간염 예방접종</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    setSearch('아이엘 피부과 (전남 무안군 삼향읍 유교길 6)');
+                                    setIsOpenGoogleMapModal(true);
+                                }}
+                            >
+                                <View style={styles.vaccinationItem}>
+                                    <Text style={[variant.body1Medium]}>대상포진 예방접종</Text>
+                                </View>
+                            </TouchableOpacity>
                         </View>
                     </View>
-                </ShadowCard>
-
-                <View style={styles.vaccinationCard}>
-                    <View style={styles.vaccinationCardTitle}>
-                        <Text style={variant.title1Semibold}>추천 예방접종</Text>
-                        <Text style={[variant.body5Medium, styles.descriptionTextColor]}>
-                            *접종명을 누르면 접종 예약이 가능합니다
-                        </Text>
-                    </View>
-                    <View style={styles.vaccinationSubCardWrapper}>
-                        <View style={styles.vaccinationItem}>
-                            <Text style={[variant.body1Medium]}>B형간염 예방접종</Text>
-                        </View>
-                        <View style={styles.vaccinationItem}>
-                            <Text style={[variant.body1Medium]}>대상포진 예방접종</Text>
-                        </View>
-                    </View>
-                </View>
-            </ScreenWrapper>
-        </ScrollView>
+                </ScreenWrapper>
+            </ScrollView>
+            <GoogleMapModal
+                search={search}
+                isOpen={isOpenGoogleMapModal}
+                onClose={() => {
+                    setSearch('');
+                    setIsOpenGoogleMapModal(false);
+                }}
+                onChangeSearch={setSearch}
+            />
+        </>
     );
 }
 

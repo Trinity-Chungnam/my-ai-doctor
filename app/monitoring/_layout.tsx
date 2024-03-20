@@ -1,13 +1,15 @@
 import { Stack } from 'expo-router';
 
+import TabHeader from '../../components/Header/TabHeader';
+
 export const unstable_settings = {
     initialRouteName: '(tabs)',
 };
 
 export default function Monitoring() {
     return (
-        <Stack initialRouteName="(tabs)">
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack screenOptions={{ contentStyle: { backgroundColor: 'white' } }}>
+            <Stack.Screen name="[id]" options={{ headerBackVisible: true, title: 'AI 모니터링 상세', header: TabHeader }} />
         </Stack>
     );
 }
