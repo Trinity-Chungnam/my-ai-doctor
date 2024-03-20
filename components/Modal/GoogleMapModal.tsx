@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import SearchIcon from '../../assets/icons/search';
 import { COLOR } from '../../src/tokens/color';
@@ -11,9 +11,10 @@ type GoogleMapModalProps = {
     isOpen: boolean;
     onClose(): void;
     onChangeSearch(text: string): void;
+    onSubmit(): void;
 };
 
-export default function GoogleMapModal({ isOpen, search, onChangeSearch, onClose }: GoogleMapModalProps) {
+export default function GoogleMapModal({ isOpen, search, onChangeSearch, onClose, onSubmit }: GoogleMapModalProps) {
     return (
         <Modal visible={isOpen} transparent animationType="fade">
             <Pressable style={styles.wrapper} onPress={onClose}>
@@ -28,13 +29,23 @@ export default function GoogleMapModal({ isOpen, search, onChangeSearch, onClose
                             <MapView
                                 style={styles.map}
                                 initialRegion={{
-                                    latitude: 37.0,
-                                    longitude: 126.0,
+                                    latitude: 34.850353,
+                                    longitude: 126.441048,
                                     latitudeDelta: 0.01,
                                     longitudeDelta: 0.01,
                                 }}
                                 provider={PROVIDER_GOOGLE}
-                            />
+                            >
+                                <Marker
+                                    coordinate={{
+                                        latitude: 34.850353,
+                                        longitude: 126.441048,
+                                    }}
+                                    pinColor="#2D63E2"
+                                    title="하이"
+                                    description="테스트"
+                                />
+                            </MapView>
                             <Text
                                 style={[
                                     variant.body1Medium,
@@ -43,7 +54,7 @@ export default function GoogleMapModal({ isOpen, search, onChangeSearch, onClose
                             >
                                 예방접종은 가까운 병원만 선택 가능합니다
                             </Text>
-                            <TouchableOpacity style={styles.buttonWrapper}>
+                            <TouchableOpacity style={styles.buttonWrapper} onPress={onSubmit}>
                                 <Text style={[variant.title3Medium, { color: 'white' }]}>확인</Text>
                             </TouchableOpacity>
                         </View>

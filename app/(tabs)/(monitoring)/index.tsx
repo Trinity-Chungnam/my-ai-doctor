@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -11,6 +11,7 @@ import { COLOR } from '../../../src/tokens/color';
 
 export default function HomeScreen() {
     const [isOpenGoogleMapModal, setIsOpenGoogleMapModal] = useState(false);
+    const router = useRouter();
     const [search, setSearch] = useState('');
     const data = {
         id: '123',
@@ -134,6 +135,10 @@ export default function HomeScreen() {
                     setIsOpenGoogleMapModal(false);
                 }}
                 onChangeSearch={setSearch}
+                onSubmit={() => {
+                    setIsOpenGoogleMapModal(false);
+                    router.push(`/monitoring/appointment-vaccination/${search}`);
+                }}
             />
         </>
     );

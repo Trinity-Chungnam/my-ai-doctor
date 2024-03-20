@@ -10,6 +10,7 @@
         "lint": "eslint ."
     },
     "dependencies": {
+        "dayjs": "^1.11.10",
         "expo": "~50.0.13",
         "expo-constants": "~15.4.5",
         "expo-font": "^11.10.3",
