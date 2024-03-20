@@ -19,10 +19,17 @@ export const variant = StyleSheet.create({
     heading1Bold: {
         fontSize: 24,
         fontWeight: fontWeights.bold,
+        fontFamily: 'Pretendard-Bold',
     },
     heading1Semibold: {
         fontSize: 24,
         fontWeight: fontWeights.semibold,
+        fontFamily: 'Pretendard-SemiBold',
+    },
+    heading3Semibold: {
+        fontSize: 20,
+        fontWeight: fontWeights.semibold,
+        fontFamily: 'Pretendard-SemiBold',
     },
     title1: {
         fontSize: 22,
@@ -30,6 +37,12 @@ export const variant = StyleSheet.create({
     title1Semibold: {
         fontSize: 22,
         fontWeight: fontWeights.semibold,
+        fontFamily: 'Pretendard-SemiBold',
+    },
+    title3Medium: {
+        fontSize: 18,
+        fontWeight: fontWeights.medium,
+        fontFamily: 'Pretendard-Medium',
     },
     body1: {
         fontSize: 16,
@@ -37,6 +50,7 @@ export const variant = StyleSheet.create({
     body1Medium: {
         fontSize: 16,
         fontWeight: fontWeights.medium,
+        fontFamily: 'Pretendard-Medium',
     },
     body1Semibold: {
         fontSize: 16,
@@ -53,6 +67,7 @@ export const variant = StyleSheet.create({
     body4Semibold: {
         fontSize: 13,
         fontWeight: fontWeights.semibold,
+        fontFamily: 'Pretendard-SemiBold',
     },
     body5: {
         fontSize: 12,
@@ -60,6 +75,7 @@ export const variant = StyleSheet.create({
     body5Medium: {
         fontSize: 12,
         fontWeight: fontWeights.medium,
+        fontFamily: 'Pretendard-Medium',
     },
     body6: {
         fontSize: 11,
@@ -70,5 +86,6 @@ export const variant = StyleSheet.create({
     body7Semibold: {
         fontSize: 10,
         fontWeight: fontWeights.semibold,
+        fontFamily: 'Pretendard-SemiBold',
     },
 });

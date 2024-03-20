@@ -3,7 +3,7 @@
         "scheme": "my-ai-doctor",
         "name": "my-ai-doctor",
         "slug": "my-ai-doctor",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
         "userInterfaceStyle": "light",
@@ -14,18 +14,29 @@
         },
         "assetBundlePatterns": ["**/*"],
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "bundleIdentifier": "com.yunchanpark1.myaidoctor",
+            "usesNonExemptEncryption": false
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
-            }
+            },
+            "package": "com.yunchanpark1.myaidoctor"
         },
         "web": {
             "favicon": "./assets/favicon.png",
             "bundler": "metro"
         },
-        "plugins": ["expo-router"]
+        "plugins": ["expo-router"],
+        "extra": {
+            "router": {
+                "origin": false
+            },
+            "eas": {
+                "projectId": "b9a207d2-b742-4e7a-897f-fb423dfc4a58"
+            }
+        }
     }
 }

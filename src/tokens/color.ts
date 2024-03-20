@@ -14,7 +14,7 @@ export const COLOR = {
     black: {
         500: '#000000',
     },
-    red: {
+    RED: {
         500: '#FF0000',
     },
 };

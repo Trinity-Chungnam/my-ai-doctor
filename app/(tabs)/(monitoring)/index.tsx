@@ -1,4 +1,5 @@
 import { Image } from 'expo-image';
+import { Link } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import ScreenWrapper from '../../../components/ScreenWrapper';
@@ -8,6 +9,7 @@ import { COLOR } from '../../../src/tokens/color';
 
 export default function HomeScreen() {
     const data = {
+        id: '123',
         name: '마이닥',
         healthyAge: {
             origin: 48,
@@ -63,8 +65,12 @@ export default function HomeScreen() {
                                 </Text>
                             </View>
                         </View>
-                        <View style={styles.buttonWrapper}>
-                            <Text style={variant.body1Medium}>상세 정보 살펴보기</Text>
+                        <View style={{ paddingHorizontal: 20, paddingVertical: 20 }}>
+                            <View style={styles.buttonWrapper}>
+                                <Link href={`/${data.id}`}>
+                                    <Text style={variant.body1Medium}>상세 정보 살펴보기</Text>
+                                </Link>
+                            </View>
                         </View>
                     </View>
 
@@ -198,12 +204,11 @@ const styles = StyleSheet.create({
     },
 
     buttonWrapper: {
-        marginHorizontal: 20,
-        marginVertical: 20,
         backgroundColor: COLOR.LIGHT_GREY[500],
         paddingVertical: 10,
         alignItems: 'center',
         borderRadius: 14,
+        width: '100%',
     },
     divider: {
         height: 117,
