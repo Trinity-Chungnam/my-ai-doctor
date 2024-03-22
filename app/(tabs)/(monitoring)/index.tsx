@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
@@ -79,13 +79,13 @@ export default function HomeScreen() {
                                     </Typo>
                                 </View>
                             </View>
-                            <View style={{ paddingHorizontal: 20, paddingVertical: 20 }}>
-                                <View style={styles.buttonWrapper}>
-                                    <Link href={`/monitoring/${data.id}`}>
+                            <TouchableOpacity onPress={() => router.push(`/monitoring/${data.id}`)}>
+                                <View style={{ paddingHorizontal: 20, paddingVertical: 20 }}>
+                                    <View style={styles.buttonWrapper}>
                                         <Typo variant="body1Medium">상세 정보 살펴보기</Typo>
-                                    </Link>
+                                    </View>
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         </View>
 
                         <View style={styles.diseaseSubCardWrapper}>

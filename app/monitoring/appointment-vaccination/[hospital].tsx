@@ -10,7 +10,6 @@ import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
 import Typo from '../../../components/Text/Typo';
 import { COLOR } from '../../../src/tokens/color';
-
 LocaleConfig.locales['fr'] = {
     monthNames: [
         'Janvier',
@@ -59,7 +58,7 @@ export default function AppointmentVaccinationScreen() {
                     <View style={styles.textWrapper}>
                         <Typo variant="title1Semibold" color="white">
                             {`${data.name} `}
-                            <Typo variant="body4Semibold" color="white">
+                            <Typo variant="body1Medium" color="white">
                                 님
                             </Typo>
                         </Typo>
@@ -86,7 +85,7 @@ export default function AppointmentVaccinationScreen() {
                     />
                     <View style={styles.calendarStringWrapper}>
                         <CalendarMonth />
-                        <Typo>{dayjs(initDate).format('YYYY년 MM월 DD일')}</Typo>
+                        <Typo>{dayjs(selected).format('YYYY년 MM월 DD일')}</Typo>
                         <View style={{ width: 26 }} />
                     </View>
                     <View style={styles.divider} />

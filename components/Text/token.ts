@@ -1,5 +1,5 @@
-import { COLOR } from '../../src/tokens/color';
 import { FontWeight, TextLightColor, VariantMap } from './type';
+import { COLOR } from '../../src/tokens/color';
 
 const fontWeights: FontWeight = {
     heavy: '900',
