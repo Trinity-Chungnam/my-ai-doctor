@@ -1,10 +1,11 @@
 import { Image } from 'expo-image';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import HealthyCard, { HealthyCardProps } from '../(tabs)/(monitoring)/components/HealthyCard';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import ShadowCard from '../../components/ShadowCard';
-import { variant } from '../../components/Text/token';
+import Typo from '../../components/Text/Typo';
 import { COLOR } from '../../src/tokens/color';
 
 export default function MonitoringDetailScreen() {
@@ -32,162 +33,103 @@ export default function MonitoringDetailScreen() {
         brainDisease: '보통',
     };
 
+    const healthyCardArray: HealthyCardProps[] = [
+        {
+            label: '신체 건강',
+            result: data.physicalHealth,
+            description: '동일 연령 기준',
+            source: require('../../assets/images/accessibility.png'),
+        },
+        {
+            label: '혈액 건강',
+            result: data.bloodHealth,
+            description: '당뇨 주의',
+            source: require('../../assets/images/blood.png'),
+        },
+        {
+            label: '폐 질환',
+            result: data.lungDisease,
+            description: '흡연 주의',
+            source: require('../../assets/images/lung.png'),
+        },
+        {
+            label: '신장 질환',
+            result: data.kidneyDisease,
+            description: '동일 연령 기준',
+            source: require('../../assets/images/kidney.png'),
+        },
+        {
+            label: '전립선 질환',
+            result: data.prostateDisease,
+            description: '동일 연령 기준',
+            source: require('../../assets/images/prostate.png'),
+        },
+        {
+            label: '뇌 질환',
+            result: data.brainDisease,
+            description: '동일 연령 기준',
+            source: require('../../assets/images/brain.png'),
+        },
+    ];
+
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: bottom + 79 }}>
             <ScreenWrapper style={styles.wrapper}>
                 <ShadowCard style={styles.shadowCard}>
                     <View style={styles.cardContainer}>
-                        <Text style={[styles.whiteColor, variant.title1Semibold]}>{data.dateString}</Text>
-                        <Text style={[styles.whiteColor, variant.body5Medium]}>*My Data 반영, 동일 연령 기준</Text>
+                        <Typo variant="title1Semibold" color="white">
+                            {data.dateString}
+                        </Typo>
+                        <Typo variant="body5Medium" color="white">
+                            *My Data 반영, 동일 연령 기준
+                        </Typo>
                     </View>
                     <View style={styles.subCard}>
                         <View style={styles.subCardWrapper}>
                             <View style={styles.subCardContent}>
-                                <Text style={[styles.subCardTitle, variant.body4Semibold]}>건강나이</Text>
+                                <Typo variant="body4Semibold" color="dark-grey-500">
+                                    건강나이
+                                </Typo>
                                 <Image source={require('../../assets/images/person.png')} style={styles.imageSize} />
-                                <Text style={variant.heading1Semibold}>{data.healthyAge.origin}세</Text>
-                                <Text style={(variant.body7Semibold, { color: COLOR.ORANGE[500] })}>
+                                <Typo variant="heading1Semibold">{data.healthyAge.origin}세</Typo>
+                                <Typo variant="body7Semibold" color="orange-500">
                                     {data.healthyAge.compare >= 0
                                         ? '+' + data.healthyAge.compare + '세'
                                         : data.healthyAge.compare + '세'}
-                                </Text>
+                                </Typo>
                             </View>
                             <View style={styles.subCardContent}>
-                                <Text style={[styles.subCardTitle, variant.body4Semibold]}>주의</Text>
+                                <Typo variant="body4Semibold" color="dark-grey-500">
+                                    주의
+                                </Typo>
                                 <Image source={require('../../assets/images/liver.png')} style={styles.imageSize} />
-                                <Text style={variant.heading1Semibold}>{data.waring.origin}</Text>
-                                <Text style={(variant.body7Semibold, { color: COLOR.ORANGE[500] })}>{data.waring.reason}</Text>
+                                <Typo variant="heading1Semibold">{data.waring.origin}</Typo>
+                                <Typo variant="body7Semibold" color="orange-500">
+                                    {data.waring.reason}
+                                </Typo>
                             </View>
                             <View style={styles.subCardContent}>
-                                <Text style={[styles.subCardTitle, variant.body4Semibold]}>연령대 평균</Text>
+                                <Typo variant="body4Semibold" color="dark-grey-500">
+                                    연령대 평균
+                                </Typo>
                                 <Image source={require('../../assets/images/graph.png')} style={styles.imageSize} />
-                                <Text style={variant.heading1Semibold}>{data.ageGroupAverage.origin}</Text>
-                                <Text style={(variant.body7Semibold, { color: COLOR.ORANGE[500] })}>
+                                <Typo variant="heading1Semibold">{data.ageGroupAverage.origin}</Typo>
+                                <Typo variant="body7Semibold" color="orange-500">
                                     {data.ageGroupAverage.compare >= 0
                                         ? '+' + data.ageGroupAverage.compare + '점'
                                         : data.ageGroupAverage.compare + '점'}
-                                </Text>
+                                </Typo>
                             </View>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                        <View
-                            style={{
-                                borderRadius: 14,
-                                backgroundColor: 'white',
-                                paddingVertical: 19,
-                                alignItems: 'center',
-                                gap: 10,
-                                width: '30%',
-                                marginBottom: 20,
-                            }}
-                        >
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>신체 건강</Text>
-                            <Image
-                                source={require('../../assets/images/accessibility.png')}
-                                style={{ width: 60, height: 60 }}
-                            />
-                            <Text style={variant.heading3Semibold}>{data.physicalHealth}</Text>
-                            <Text style={[variant.body7Semibold, { color: COLOR.DARK_GREY[500] }]}>동일 연령 기준</Text>
-                        </View>
-                        <View
-                            style={{
-                                borderRadius: 14,
-                                backgroundColor: 'white',
-                                paddingVertical: 19,
-                                alignItems: 'center',
-                                gap: 10,
-                                width: '30%',
-                                marginBottom: 20,
-                            }}
-                        >
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>혈액 건강</Text>
-                            <Image source={require('../../assets/images/blood.png')} style={{ width: 60, height: 60 }} />
-                            <Text
-                                style={[
-                                    variant.heading3Semibold,
-                                    data.bloodHealth === '나쁨' ? { color: COLOR.RED[500] } : undefined,
-                                ]}
-                            >
-                                {data.bloodHealth}
-                            </Text>
-                            <Text style={[variant.body7Semibold, { color: COLOR.DARK_GREY[500] }]}>당뇨 주의</Text>
-                        </View>
-                        <View
-                            style={{
-                                borderRadius: 14,
-                                backgroundColor: 'white',
-                                paddingVertical: 19,
-                                alignItems: 'center',
-                                gap: 10,
-                                width: '30%',
-                                marginBottom: 20,
-                            }}
-                        >
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>폐 질환</Text>
-                            <Image source={require('../../assets/images/lung.png')} style={{ width: 60, height: 60 }} />
-                            <Text style={variant.heading3Semibold}>{data.lungDisease}</Text>
-                            <Text style={[variant.body7Semibold, { color: COLOR.DARK_GREY[500] }]}>흡연 주의</Text>
-                        </View>
-                        <View
-                            style={{
-                                borderRadius: 14,
-                                backgroundColor: 'white',
-                                paddingVertical: 19,
-                                alignItems: 'center',
-                                gap: 10,
-                                width: '30%',
-                                marginBottom: 20,
-                            }}
-                        >
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>신장 질환</Text>
-                            <Image source={require('../../assets/images/kidney.png')} style={{ width: 60, height: 60 }} />
-                            <Text
-                                style={[
-                                    variant.heading3Semibold,
-                                    data.kidneyDisease === '위험' ? { color: COLOR.RED[500] } : undefined,
-                                ]}
-                            >
-                                {data.kidneyDisease}
-                            </Text>
-                            <Text style={[variant.body7Semibold, { color: COLOR.DARK_GREY[500] }]}>동일 연령 기준</Text>
-                        </View>
-                        <View
-                            style={{
-                                borderRadius: 14,
-                                backgroundColor: 'white',
-                                paddingVertical: 19,
-                                alignItems: 'center',
-                                gap: 10,
-                                width: '30%',
-                                marginBottom: 20,
-                            }}
-                        >
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>전립선 질환</Text>
-                            <Image source={require('../../assets/images/prostate.png')} style={{ width: 60, height: 60 }} />
-                            <Text style={variant.heading3Semibold}>{data.prostateDisease}</Text>
-                            <Text style={[variant.body7Semibold, { color: COLOR.DARK_GREY[500] }]}>동일 연령 기준</Text>
-                        </View>
-                        <View
-                            style={{
-                                borderRadius: 14,
-                                backgroundColor: 'white',
-                                paddingVertical: 19,
-                                alignItems: 'center',
-                                gap: 10,
-                                width: '30%',
-                                marginBottom: 20,
-                            }}
-                        >
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>뇌 질환</Text>
-                            <Image source={require('../../assets/images/brain.png')} style={{ width: 60, height: 60 }} />
-                            <Text style={variant.heading3Semibold}>{data.brainDisease}</Text>
-                            <Text style={[variant.body7Semibold, { color: COLOR.DARK_GREY[500] }]}>동일 연령 기준</Text>
-                        </View>
+                        {healthyCardArray.map((props) => {
+                            return <HealthyCard key={props.label} {...props} />;
+                        })}
                     </View>
                 </ShadowCard>
                 <View style={styles.buttonWrapper}>
-                    <Text style={variant.title3Medium}>주간 레포트 저장하기</Text>
+                    <Typo variant="title3Medium">주간 레포트 저장하기</Typo>
                 </View>
             </ScreenWrapper>
         </ScrollView>

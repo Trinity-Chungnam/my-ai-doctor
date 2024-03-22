@@ -6,23 +6,26 @@ export type FontWeight = {
 };
 
 export type VariantType =
-    | 'heading1'
     | 'heading1Bold'
-    | 'heading1Light'
-    | 'heading2'
-    | 'heading3'
-    | 'heading4'
-    | 'title1'
-    | 'title2'
-    | 'title3'
-    | 'title4'
-    | 'title5'
-    | 'title6'
-    | 'body1'
-    | 'body2'
-    | 'body3'
-    | 'body4'
-    | 'body5';
+    | 'heading1Semibold'
+    | 'heading3Semibold'
+    | 'heading3Medium'
+    | 'title1Semibold'
+    | 'title3Semibold'
+    | 'title3Medium'
+    | 'body1Medium'
+    | 'body4Semibold'
+    | 'body5Medium'
+    | 'body7Semibold';
+
+export type VariantMap = {
+    [key in VariantType]: {
+        fontSize: number;
+        fontWeight: TextStyle['fontWeight'];
+        fontFamily: string;
+    };
+};
+
 export type Variant = {
     [key in VariantType]: {
         fontWeight: TextStyle['fontWeight'];
@@ -31,21 +34,8 @@ export type Variant = {
     };
 };
 
-export type TextColorType =
-    | 'primary'
-    | 'secondary'
-    | 'light-placeholder'
-    | 'placeholder'
-    | 'sub-placeholder'
-    | 'error'
-    | 'surface'
-    | 'require'
-    | 'default'
-    | 'sub-default'
-    | 'error-toast'
-    | 'warning-toast'
-    | 'info-toast'
-    | 'success-toast';
+export type TextColorType = 'brand-color' | 'white' | 'orange-500' | 'dark-grey-500' | 'light-gray-500' | 'black' | 'red-500';
+
 export type TextLightColor = {
     [key in TextColorType]: ColorValue;
 };

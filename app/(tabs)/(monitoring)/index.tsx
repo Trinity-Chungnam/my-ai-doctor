@@ -1,12 +1,12 @@
 import { Image } from 'expo-image';
 import { Link, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import GoogleMapModal from '../../../components/Modal/GoogleMapModal';
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
-import { variant } from '../../../components/Text/token';
+import Typo from '../../../components/Text/Typo';
 import { COLOR } from '../../../src/tokens/color';
 
 export default function HomeScreen() {
@@ -35,46 +35,54 @@ export default function HomeScreen() {
                 <ScreenWrapper style={styles.wrapper}>
                     <ShadowCard style={styles.shadowCard}>
                         <View style={styles.cardContainer}>
-                            <Text style={[styles.whiteColor, variant.title1Semibold]}>
+                            <Typo variant="title1Semibold" color="white">
                                 {`${data.name} `}
-                                <Text style={variant.body1Semibold}>님</Text>
-                            </Text>
-                            <Text style={[styles.whiteColor, variant.body5Medium]}>
+                                <Typo variant="body1Medium" color="white">
+                                    님
+                                </Typo>
+                            </Typo>
+                            <Typo variant="body5Medium" color="white">
                                 *글자를 누르면 주간 운동과 식단이 제공됩니다
-                            </Text>
+                            </Typo>
                         </View>
                         <View style={styles.subCard}>
                             <View style={styles.subCardWrapper}>
                                 <View style={styles.subCardContent}>
-                                    <Text style={[styles.subCardTitle, variant.body4Semibold]}>건강나이</Text>
+                                    <Typo variant="body4Semibold" color="dark-grey-500">
+                                        건강나이
+                                    </Typo>
                                     <Image source={require('../../../assets/images/person.png')} style={styles.imageSize} />
-                                    <Text style={variant.heading1Semibold}>{data.healthyAge.origin}세</Text>
-                                    <Text style={(variant.body7Semibold, { color: COLOR.ORANGE[500] })}>
+                                    <Typo variant="heading1Semibold">{data.healthyAge.origin}세</Typo>
+                                    <Typo variant="body7Semibold" color="orange-500">
                                         {data.healthyAge.compare >= 0
                                             ? '+' + data.healthyAge.compare + '세'
                                             : data.healthyAge.compare + '세'}
-                                    </Text>
+                                    </Typo>
                                 </View>
                                 <View style={styles.subCardContent}>
-                                    <Text style={[styles.subCardTitle, variant.body4Semibold]}>주의</Text>
+                                    <Typo variant="body4Semibold" color="dark-grey-500">
+                                        주의
+                                    </Typo>
                                     <Image source={require('../../../assets/images/liver.png')} style={styles.imageSize} />
-                                    <Text style={variant.heading1Semibold}>{data.waring}</Text>
+                                    <Typo variant="heading1Semibold">{data.waring}</Typo>
                                 </View>
                                 <View style={styles.subCardContent}>
-                                    <Text style={[styles.subCardTitle, variant.body4Semibold]}>연령대 평균</Text>
+                                    <Typo variant="body4Semibold" color="dark-grey-500">
+                                        연령대 평균
+                                    </Typo>
                                     <Image source={require('../../../assets/images/graph.png')} style={styles.imageSize} />
-                                    <Text style={variant.heading1Semibold}>{data.ageGroupAverage.origin}</Text>
-                                    <Text style={(variant.body7Semibold, { color: COLOR.ORANGE[500] })}>
+                                    <Typo variant="heading1Semibold">{data.ageGroupAverage.origin}</Typo>
+                                    <Typo variant="body7Semibold" color="orange-500">
                                         {data.ageGroupAverage.compare >= 0
                                             ? '+' + data.ageGroupAverage.compare + '점'
                                             : data.ageGroupAverage.compare + '점'}
-                                    </Text>
+                                    </Typo>
                                 </View>
                             </View>
                             <View style={{ paddingHorizontal: 20, paddingVertical: 20 }}>
                                 <View style={styles.buttonWrapper}>
                                     <Link href={`/monitoring/${data.id}`}>
-                                        <Text style={variant.body1Medium}>상세 정보 살펴보기</Text>
+                                        <Typo variant="body1Medium">상세 정보 살펴보기</Typo>
                                     </Link>
                                 </View>
                             </View>
@@ -82,25 +90,29 @@ export default function HomeScreen() {
 
                         <View style={styles.diseaseSubCardWrapper}>
                             <View style={styles.diseaseSubCard}>
-                                <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>AI 닥터 추천 운동</Text>
-                                <Text style={[variant.heading1Bold, { color: COLOR.BLUE[500] }]}>
+                                <Typo variant="body4Semibold" color="dark-grey-500">
+                                    AI 닥터 추천 운동
+                                </Typo>
+                                <Typo variant="heading1Bold" color="brand-color">
                                     {data.recommendedExercise}
-                                </Text>
+                                </Typo>
                             </View>
                             <View style={styles.divider} />
                             <View style={styles.diseaseSubCard}>
-                                <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>AI 닥터 추천 식단</Text>
-                                <Text style={[variant.heading1Bold]}>{data.recommendedDiet}</Text>
+                                <Typo variant="body4Semibold" color="dark-grey-500">
+                                    AI 닥터 추천 식단
+                                </Typo>
+                                <Typo variant="heading1Bold">{data.recommendedDiet}</Typo>
                             </View>
                         </View>
                     </ShadowCard>
 
                     <View style={styles.vaccinationCard}>
                         <View style={styles.vaccinationCardTitle}>
-                            <Text style={variant.title1Semibold}>추천 예방접종</Text>
-                            <Text style={[variant.body5Medium, styles.descriptionTextColor]}>
+                            <Typo variant="title1Semibold">추천 예방접종</Typo>
+                            <Typo variant="body5Medium" color="dark-grey-500">
                                 *접종명을 누르면 접종 예약이 가능합니다
-                            </Text>
+                            </Typo>
                         </View>
                         <View style={styles.vaccinationSubCardWrapper}>
                             <TouchableOpacity
@@ -110,7 +122,7 @@ export default function HomeScreen() {
                                 }}
                             >
                                 <View style={styles.vaccinationItem}>
-                                    <Text style={[variant.body1Medium]}>B형간염 예방접종</Text>
+                                    <Typo variant="body1Medium">B형간염 예방접종</Typo>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity
@@ -120,7 +132,7 @@ export default function HomeScreen() {
                                 }}
                             >
                                 <View style={styles.vaccinationItem}>
-                                    <Text style={[variant.body1Medium]}>대상포진 예방접종</Text>
+                                    <Typo variant="body1Medium">대상포진 예방접종</Typo>
                                 </View>
                             </TouchableOpacity>
                         </View>
