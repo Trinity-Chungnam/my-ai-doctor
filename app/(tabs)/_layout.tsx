@@ -6,7 +6,7 @@ import AccountCircle from '../../assets/icons/account_circle';
 import { AddToQueueIcon } from '../../assets/icons/add_to_queue';
 import EcgHeartIcon from '../../assets/icons/ecg_heart';
 import HomeIcon from '../../assets/icons/home';
-import { COLOR } from '../../src/tokens/color';
+import { COLOR } from '../../tokens/color';
 
 export const unstable_settings = {
     initialRouteName: '(home)',

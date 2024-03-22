@@ -5,7 +5,7 @@ import PersonPinCircle from '../../../assets/icons/person_pin_circle';
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
 import Typo from '../../../components/Text/Typo';
-import { COLOR } from '../../../src/tokens/color';
+import { COLOR } from '../../../tokens/color';
 
 export default function HomeScreen() {
     const data = {

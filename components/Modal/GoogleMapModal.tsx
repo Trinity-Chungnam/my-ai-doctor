@@ -3,7 +3,7 @@ import { Modal, Pressable, StyleSheet, TextInput, TouchableOpacity, View } from 
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import SearchIcon from '../../assets/icons/search';
-import { COLOR } from '../../src/tokens/color';
+import { COLOR } from '../../tokens/color';
 import Typo from '../Text/Typo';
 
 type GoogleMapModalProps = {

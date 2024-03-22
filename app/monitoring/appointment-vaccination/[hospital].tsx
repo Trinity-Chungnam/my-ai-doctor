@@ -9,7 +9,7 @@ import ResidentRegistrationModal from '../../../components/Modal/ResidentRegistr
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
 import Typo from '../../../components/Text/Typo';
-import { COLOR } from '../../../src/tokens/color';
+import { COLOR } from '../../../tokens/color';
 LocaleConfig.locales['fr'] = {
     monthNames: [
         'Janvier',

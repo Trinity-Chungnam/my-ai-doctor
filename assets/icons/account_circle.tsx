@@ -1,6 +1,6 @@
 import { G, Mask, Path, Rect, Svg } from 'react-native-svg';
 
-import { COLOR } from '../../src/tokens/color';
+import { COLOR } from '../../tokens/color';
 import { IconProps } from '../../types/icon';
 
 export default function AccountCircle({ width = 26, height = 27, fill = COLOR.DARK_GREY[500] }: IconProps) {

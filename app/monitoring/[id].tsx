@@ -1,15 +1,21 @@
 import { Image } from 'expo-image';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import HealthyCard, { HealthyCardProps } from '../(tabs)/(monitoring)/components/HealthyCard';
+import ReservationModal from '../../components/Modal/ReservationModal';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import ShadowCard from '../../components/ShadowCard';
 import Typo from '../../components/Text/Typo';
-import { COLOR } from '../../src/tokens/color';
+import { COLOR } from '../../tokens/color';
 
 export default function MonitoringDetailScreen() {
     const { bottom } = useSafeAreaInsets();
+    const [isOpenModal, setIsOpenModal] = useState(false);
+    const router = useRouter();
+
     const data = {
         id: '123',
         dateString: '2024년 4월 5일',
@@ -73,66 +79,78 @@ export default function MonitoringDetailScreen() {
     ];
 
     return (
-        <ScrollView contentContainerStyle={{ paddingBottom: bottom + 79 }}>
-            <ScreenWrapper style={styles.wrapper}>
-                <ShadowCard style={styles.shadowCard}>
-                    <View style={styles.cardContainer}>
-                        <Typo variant="title1Semibold" color="white">
-                            {data.dateString}
-                        </Typo>
-                        <Typo variant="body5Medium" color="white">
-                            *My Data 반영, 동일 연령 기준
-                        </Typo>
-                    </View>
-                    <View style={styles.subCard}>
-                        <View style={styles.subCardWrapper}>
-                            <View style={styles.subCardContent}>
-                                <Typo variant="body4Semibold" color="dark-grey-500">
-                                    건강나이
-                                </Typo>
-                                <Image source={require('../../assets/images/person.png')} style={styles.imageSize} />
-                                <Typo variant="heading1Semibold">{data.healthyAge.origin}세</Typo>
-                                <Typo variant="body7Semibold" color="orange-500">
-                                    {data.healthyAge.compare >= 0
-                                        ? '+' + data.healthyAge.compare + '세'
-                                        : data.healthyAge.compare + '세'}
-                                </Typo>
-                            </View>
-                            <View style={styles.subCardContent}>
-                                <Typo variant="body4Semibold" color="dark-grey-500">
-                                    주의
-                                </Typo>
-                                <Image source={require('../../assets/images/liver.png')} style={styles.imageSize} />
-                                <Typo variant="heading1Semibold">{data.waring.origin}</Typo>
-                                <Typo variant="body7Semibold" color="orange-500">
-                                    {data.waring.reason}
-                                </Typo>
-                            </View>
-                            <View style={styles.subCardContent}>
-                                <Typo variant="body4Semibold" color="dark-grey-500">
-                                    연령대 평균
-                                </Typo>
-                                <Image source={require('../../assets/images/graph.png')} style={styles.imageSize} />
-                                <Typo variant="heading1Semibold">{data.ageGroupAverage.origin}</Typo>
-                                <Typo variant="body7Semibold" color="orange-500">
-                                    {data.ageGroupAverage.compare >= 0
-                                        ? '+' + data.ageGroupAverage.compare + '점'
-                                        : data.ageGroupAverage.compare + '점'}
-                                </Typo>
+        <>
+            <ScrollView contentContainerStyle={{ paddingBottom: bottom + 79 }}>
+                <ScreenWrapper style={styles.wrapper}>
+                    <ShadowCard style={styles.shadowCard}>
+                        <View style={styles.cardContainer}>
+                            <Typo variant="title1Semibold" color="white">
+                                {data.dateString}
+                            </Typo>
+                            <Typo variant="body5Medium" color="white">
+                                *My Data 반영, 동일 연령 기준
+                            </Typo>
+                        </View>
+                        <View style={styles.subCard}>
+                            <View style={styles.subCardWrapper}>
+                                <View style={styles.subCardContent}>
+                                    <Typo variant="body4Semibold" color="dark-grey-500">
+                                        건강나이
+                                    </Typo>
+                                    <Image source={require('../../assets/images/person.png')} style={styles.imageSize} />
+                                    <Typo variant="heading1Semibold">{data.healthyAge.origin}세</Typo>
+                                    <Typo variant="body7Semibold" color="orange-500">
+                                        {data.healthyAge.compare >= 0
+                                            ? '+' + data.healthyAge.compare + '세'
+                                            : data.healthyAge.compare + '세'}
+                                    </Typo>
+                                </View>
+                                <View style={styles.subCardContent}>
+                                    <Typo variant="body4Semibold" color="dark-grey-500">
+                                        주의
+                                    </Typo>
+                                    <Image source={require('../../assets/images/liver.png')} style={styles.imageSize} />
+                                    <Typo variant="heading1Semibold">{data.waring.origin}</Typo>
+                                    <Typo variant="body7Semibold" color="orange-500">
+                                        {data.waring.reason}
+                                    </Typo>
+                                </View>
+                                <View style={styles.subCardContent}>
+                                    <Typo variant="body4Semibold" color="dark-grey-500">
+                                        연령대 평균
+                                    </Typo>
+                                    <Image source={require('../../assets/images/graph.png')} style={styles.imageSize} />
+                                    <Typo variant="heading1Semibold">{data.ageGroupAverage.origin}</Typo>
+                                    <Typo variant="body7Semibold" color="orange-500">
+                                        {data.ageGroupAverage.compare >= 0
+                                            ? '+' + data.ageGroupAverage.compare + '점'
+                                            : data.ageGroupAverage.compare + '점'}
+                                    </Typo>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                        {healthyCardArray.map((props) => {
-                            return <HealthyCard key={props.label} {...props} />;
-                        })}
-                    </View>
-                </ShadowCard>
-                <View style={styles.buttonWrapper}>
-                    <Typo variant="title3Medium">주간 레포트 저장하기</Typo>
-                </View>
-            </ScreenWrapper>
-        </ScrollView>
+                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                            {healthyCardArray.map((props) => {
+                                return <HealthyCard key={props.label} {...props} />;
+                            })}
+                        </View>
+                    </ShadowCard>
+                    <TouchableOpacity onPress={() => setIsOpenModal(true)}>
+                        <View style={styles.buttonWrapper}>
+                            <Typo variant="title3Medium">주간 레포트 저장하기</Typo>
+                        </View>
+                    </TouchableOpacity>
+                </ScreenWrapper>
+            </ScrollView>
+            <ReservationModal
+                isOpen={isOpenModal}
+                onSubmit={() => {
+                    setIsOpenModal(false);
+                    router.push('/monitoring/appointment-vaccination/목포종합병원');
+                }}
+                onClose={() => setIsOpenModal(false)}
+            />
+        </>
     );
 }
 

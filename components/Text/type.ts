@@ -14,9 +14,11 @@ export type VariantType =
     | 'title3Semibold'
     | 'title3Medium'
     | 'body1Medium'
+    | 'body3Bold'
     | 'body4Semibold'
     | 'body5Medium'
-    | 'body7Semibold';
+    | 'body7Semibold'
+    | 'body8Medium';
 
 export type VariantMap = {
     [key in VariantType]: {

@@ -1,6 +1,6 @@
 import { G, Mask, Path, Rect, Svg } from 'react-native-svg';
 
-import { COLOR } from '../../src/tokens/color';
+import { COLOR } from '../../tokens/color';
 import { IconProps } from '../../types/icon';
 
 export default function SearchIcon({ width = 24, height = 24, fill = COLOR.BLUE[500] }: IconProps) {

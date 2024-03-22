@@ -1,17 +1,17 @@
 import React from 'react';
 import { Modal, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-import CheckCircle from '../../assets/icons/check_circle';
+import E911Emergency from '../../assets/icons/e911_emergency';
 import { COLOR } from '../../tokens/color';
 import Typo from '../Text/Typo';
 
-type ResidentRegistrationModalProps = {
+type ReservationModalProps = {
     isOpen: boolean;
     onClose(): void;
     onSubmit(): void;
 };
 
-export default function ResidentRegistrationModal({ isOpen, onClose, onSubmit }: ResidentRegistrationModalProps) {
+export default function ReservationModal({ isOpen, onClose, onSubmit }: ReservationModalProps) {
     return (
         <Modal visible={isOpen} transparent animationType="fade">
             <Pressable style={styles.wrapper} onPress={onClose}>
@@ -21,15 +21,18 @@ export default function ResidentRegistrationModal({ isOpen, onClose, onSubmit }:
                         <View style={styles.modalWrapper}>
                             <View style={{ width: '90%', alignItems: 'center' }}>
                                 <View style={{ marginBottom: 6 }}>
-                                    <CheckCircle />
+                                    <E911Emergency />
                                 </View>
-                                <View style={{ marginBottom: 20 }}>
+                                <View style={{ marginBottom: 20, alignItems: 'center' }}>
                                     <Typo variant="body1Medium" color="dark-grey-500">
-                                        예약 확정 완료
+                                        위험 감지
+                                    </Typo>
+                                    <Typo variant="body1Medium" color="dark-grey-500">
+                                        "신청"
                                     </Typo>
                                 </View>
                                 <View style={{ marginBottom: 66 }}>
-                                    <Typo variant="heading3Semibold">리마인더에 등록하시겠습니까?</Typo>
+                                    <Typo variant="heading3Semibold">검진을 예약하시겠습니까?</Typo>
                                 </View>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 30 }}>
                                     <TouchableOpacity onPress={onSubmit}>

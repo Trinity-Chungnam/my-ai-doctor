@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import UpdateIcon from '../../../assets/icons/update';
@@ -7,15 +8,16 @@ import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
 import Typo from '../../../components/Text/Typo';
 import { TextColorType } from '../../../components/Text/type';
-import { COLOR } from '../../../src/tokens/color';
+import { COLOR } from '../../../tokens/color';
 
-export default function MonitoringDetailScreen() {
+export default function MeScreen() {
     const { bottom } = useSafeAreaInsets();
+    const router = useRouter();
     const data = {
         fetchDate: dayjs().format('YYYY년 MM월 DD일 HH:mm 기준'),
         familyInfos: [
-            { name: '마이진', birthday: '2012년 5월 30일생' },
-            { name: '마할배', birthday: '1953년 12월 17일생' },
+            { id: 1, name: '마이진', birthday: '2012년 5월 30일생' },
+            { id: 2, name: '마할배', birthday: '1953년 12월 17일생' },
         ],
     };
 
@@ -92,9 +94,9 @@ export default function MonitoringDetailScreen() {
                         </Typo>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' }}>
-                        {data.familyInfos.map(({ name, birthday }) => {
+                        {data.familyInfos.map(({ id, name, birthday }) => {
                             return (
-                                <View
+                                <TouchableOpacity
                                     style={{
                                         backgroundColor: 'white',
                                         borderRadius: 14,
@@ -103,12 +105,15 @@ export default function MonitoringDetailScreen() {
                                         paddingVertical: 24,
                                         alignItems: 'center',
                                     }}
+                                    key={name + birthday}
+                                    onPress={() => router.push(`/me/family-health-data/${id}`)}
+                                    activeOpacity={0.9}
                                 >
                                     <Typo variant="title3Semibold">{name}</Typo>
                                     <Typo variant="body5Medium" color="dark-grey-500">
                                         {birthday}
                                     </Typo>
-                                </View>
+                                </TouchableOpacity>
                             );
                         })}
                     </View>
