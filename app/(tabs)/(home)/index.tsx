@@ -1,47 +1,43 @@
 import { Image } from 'expo-image';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import PersonPinCircle from '../../../assets/icons/person_pin_circle';
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
-import { variant } from '../../../components/Text/token';
-import { COLOR } from '../../../src/tokens/color';
+import Typo from '../../../components/Text/Typo';
+import { MY_DATA } from '../../../mocks/home';
+import { COLOR } from '../../../tokens/color';
 
 export default function HomeScreen() {
-    const data = {
-        name: '마이닥',
-        residentRegistrationNumber: '790516-1XXXXXX',
-        waitingCount: 0,
-        reservationCount: 1,
-        location: '전라남도 무안군 삼향읍 오룡길 1',
-        height: 180,
-        weight: 92,
-        temperature: 36.7,
-        disease: {
-            chronic: '고혈압',
-            acute: '감기',
-        },
-    };
+    const data = MY_DATA;
 
     return (
         <ScrollView contentContainerStyle={styles.scrollContainer}>
             <ScreenWrapper style={styles.wrapper}>
                 <ShadowCard style={styles.shadowCard}>
                     <View style={styles.cardContainer}>
-                        <Text style={[styles.whiteColor, variant.title1Semibold]}>
+                        <Typo variant="title1Semibold" color="white">
                             {`${data.name} `}
-                            <Text style={variant.body1Semibold}>님</Text>
-                        </Text>
-                        <Text style={[styles.whiteColor, variant.body1]}>{`${data.residentRegistrationNumber} `}</Text>
+                            <Typo variant="body1Medium" color="white">
+                                님
+                            </Typo>
+                        </Typo>
+                        <Typo variant="body1Medium" color="white">
+                            {`${data.residentRegistrationNumber} `}
+                        </Typo>
                     </View>
                     <View style={styles.subCardWrapper}>
                         <View style={styles.subCardContent}>
-                            <Text style={[styles.subCardTitle, variant.body4Semibold]}>진료대기</Text>
-                            <Text style={variant.heading1Semibold}>{data.waitingCount}건</Text>
+                            <Typo variant="body4Semibold" color="dark-grey-500">
+                                진료대기
+                            </Typo>
+                            <Typo variant="heading1Semibold">{data.waitingCount}건</Typo>
                         </View>
                         <View style={styles.subCardContent}>
-                            <Text style={[styles.subCardTitle, variant.body4Semibold]}>예약일정</Text>
-                            <Text style={variant.heading1Semibold}>{data.reservationCount}건</Text>
+                            <Typo variant="body4Semibold" color="dark-grey-500">
+                                예약일정
+                            </Typo>
+                            <Typo variant="heading1Semibold">{data.reservationCount}건</Typo>
                         </View>
                         <Image source={require('../../../assets/images/QR.png')} style={styles.imageSize} />
                     </View>
@@ -49,42 +45,52 @@ export default function HomeScreen() {
 
                 <View style={styles.locationCard}>
                     <PersonPinCircle width={26} height={26} />
-                    <Text style={variant.body1Medium}>{data.location}</Text>
+                    <Typo variant="body1Medium">{data.location}</Typo>
                     <View style={styles.empty} />
                 </View>
 
                 <View style={styles.bodyInfoCard}>
-                    <Text style={variant.title1Semibold}>신체 정보</Text>
+                    <Typo variant="title1Semibold">신체 정보</Typo>
                     <View style={styles.bodyInfoSubCard}>
-                        <Text style={variant.body1Medium}>
+                        <Typo variant="body1Medium">
                             {data.height}
-                            <Text style={variant.body4Semibold}>cm</Text>
-                        </Text>
-                        <Text style={variant.body1Medium}>
+                            <Typo variant="body4Semibold">cm</Typo>
+                        </Typo>
+                        <Typo variant="body1Medium">
                             {data.weight}
-                            <Text style={variant.body4Semibold}>kg</Text>
-                        </Text>
-                        <Text style={variant.body1Medium}>
+                            <Typo variant="body4Semibold">kg</Typo>
+                        </Typo>
+                        <Typo variant="body1Medium">
                             {data.temperature}
-                            <Text style={variant.body4Semibold}>℃</Text>
-                        </Text>
+                            <Typo variant="body4Semibold">℃</Typo>
+                        </Typo>
                     </View>
                 </View>
 
                 <View style={styles.diseaseCard}>
                     <View style={styles.diseaseCardTitle}>
-                        <Text style={variant.title1Semibold}>나의 질환</Text>
-                        <Text style={[variant.body5Medium, styles.descriptionTextColor]}>*급성은 1개월 이내만 반영됩니다</Text>
+                        <Typo variant="title1Semibold">나의 질환</Typo>
+                        <Typo variant="body5Medium" color="dark-grey-500">
+                            *급성은 1개월 이내만 반영됩니다
+                        </Typo>
                     </View>
                     <View style={styles.diseaseSubCardWrapper}>
                         <View style={styles.diseaseSubCard}>
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>만성</Text>
-                            <Text style={[variant.heading1Bold, { color: COLOR.BLUE[500] }]}>{data.disease.chronic}</Text>
+                            <Typo variant="body4Semibold" color="dark-grey-500">
+                                만성
+                            </Typo>
+                            <Typo variant="heading1Bold" color="brand-color">
+                                {data.disease.chronic}
+                            </Typo>
                         </View>
                         <View style={styles.divider} />
                         <View style={styles.diseaseSubCard}>
-                            <Text style={[variant.body4Semibold, { color: COLOR.DARK_GREY[500] }]}>급성</Text>
-                            <Text style={[variant.heading1Bold, { color: COLOR.DARK_GREY[500] }]}>{data.disease.acute}</Text>
+                            <Typo variant="body4Semibold" color="dark-grey-500">
+                                급성
+                            </Typo>
+                            <Typo variant="heading1Bold" color="dark-grey-500">
+                                {data.disease.acute}
+                            </Typo>
                         </View>
                     </View>
                 </View>
@@ -195,7 +201,7 @@ const styles = StyleSheet.create({
         width: 1,
         backgroundColor: COLOR.LIGHT_GREY[500],
     },
-    descriptionTextColor: {
+    descriptionTypoColor: {
         color: COLOR.DARK_GREY[500],
     },
 });

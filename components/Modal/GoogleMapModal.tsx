@@ -1,10 +1,10 @@
 import React from 'react';
-import { Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import SearchIcon from '../../assets/icons/search';
-import { COLOR } from '../../src/tokens/color';
-import { variant } from '../Text/token';
+import { COLOR } from '../../tokens/color';
+import Typo from '../Text/Typo';
 
 type GoogleMapModalProps = {
     search: string;
@@ -46,16 +46,15 @@ export default function GoogleMapModal({ isOpen, search, onChangeSearch, onClose
                                     description="테스트"
                                 />
                             </MapView>
-                            <Text
-                                style={[
-                                    variant.body1Medium,
-                                    { color: COLOR.DARK_GREY[500], textAlign: 'center', marginBottom: 35 },
-                                ]}
-                            >
-                                예방접종은 가까운 병원만 선택 가능합니다
-                            </Text>
+                            <View style={{ marginBottom: 35 }}>
+                                <Typo variant="body1Medium" color="dark-grey-500" textAlign="center">
+                                    예방접종은 가까운 병원만 선택 가능합니다
+                                </Typo>
+                            </View>
                             <TouchableOpacity style={styles.buttonWrapper} onPress={onSubmit}>
-                                <Text style={[variant.title3Medium, { color: 'white' }]}>확인</Text>
+                                <Typo variant="title3Medium" color="white">
+                                    확인
+                                </Typo>
                             </TouchableOpacity>
                         </View>
                     </Pressable>

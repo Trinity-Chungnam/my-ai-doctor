@@ -2,8 +2,8 @@ import React from 'react';
 import type { TextProps } from 'react-native';
 import { Text } from 'react-native';
 
-import { textLightColor, variantMap } from '../../token/text';
-import type { TextAlign, TextAlignVertical, TextColorType, VariantType } from '../../types/token/text';
+import { textColor, variantMap } from './token';
+import { TextAlign, TextAlignVertical, TextColorType, VariantType } from './type';
 
 export interface TypoProps extends Omit<TextProps, 'style'> {
     variant?: VariantType;
@@ -13,16 +13,16 @@ export interface TypoProps extends Omit<TextProps, 'style'> {
     fontFamily?: string | undefined;
 }
 
-const Typo = ({
+export default function Typo({
     children,
-    variant = 'body2',
-    color = 'default',
+    variant = 'body1Medium',
+    color = 'black',
     textAlign = 'auto',
     textAlignVertical = 'auto',
     suppressHighlighting = true,
     fontFamily = undefined,
     ...rest
-}: TypoProps) => {
+}: TypoProps) {
     const variantStyle = variantMap[variant];
 
     return (
@@ -33,7 +33,7 @@ const Typo = ({
                 {
                     textAlign,
                     textAlignVertical,
-                    color: textLightColor[color],
+                    color: textColor[color],
                     fontFamily,
                 },
             ]}
@@ -42,17 +42,4 @@ const Typo = ({
             {children}
         </Text>
     );
-};
-
-Typo.FontFamily = {
-    'DancingScript-SemiBold': 'DancingScript-SemiBold',
-    'DancingScript-Regular': 'DancingScript-Regular',
-    'DancingScript-Medium': 'DancingScript-Medium',
-    'DancingScript-Bold': 'DancingScript-Medium',
-};
-
-Typo.FontFamilyOnlyAndroid = {
-    'Roboto-Medium': 'Roboto-Medium',
-};
-
-export default Typo;
+}

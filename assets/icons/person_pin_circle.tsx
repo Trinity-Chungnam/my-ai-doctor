@@ -1,6 +1,6 @@
 import { G, Mask, Path, Rect, Svg } from 'react-native-svg';
 
-import { COLOR } from '../../src/tokens/color';
+import { COLOR } from '../../tokens/color';
 import { IconProps } from '../../types/icon';
 
 export default function PersonPinCircle({ width = 26, height = 26, fill = COLOR.ORANGE[500] }: IconProps) {

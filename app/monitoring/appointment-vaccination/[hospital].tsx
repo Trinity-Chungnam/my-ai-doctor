@@ -1,14 +1,15 @@
 import dayjs from 'dayjs';
 import { useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 
 import CalendarMonth from '../../../assets/icons/calendar_month';
+import ResidentRegistrationModal from '../../../components/Modal/ResidentRegistrationModal';
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
-import { variant } from '../../../components/Text/token';
-import { COLOR } from '../../../src/tokens/color';
+import Typo from '../../../components/Text/Typo';
+import { COLOR } from '../../../tokens/color';
 
 LocaleConfig.locales['fr'] = {
     monthNames: [
@@ -33,10 +34,11 @@ LocaleConfig.locales['fr'] = {
 LocaleConfig.defaultLocale = 'fr';
 
 export default function AppointmentVaccinationScreen() {
-    const { hospital } = useLocalSearchParams<{ hospital: string }>();
     const data = {
         name: '마이닥',
     };
+    const { hospital } = useLocalSearchParams<{ hospital: string }>();
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const initDate = dayjs().format('YYYY-MM-DD');
     const [selected, setSelected] = useState(initDate);
     const marked = useMemo(
@@ -51,35 +53,54 @@ export default function AppointmentVaccinationScreen() {
     );
 
     return (
-        <ScreenWrapper style={styles.wrapper}>
-            <ShadowCard style={styles.shadowCard}>
-                <View style={styles.textWrapper}>
-                    <Text style={[styles.whiteColor, variant.title1Semibold]}>
-                        {`${data.name} `}
-                        <Text style={variant.body1Semibold}>님</Text>
-                    </Text>
-                    <Text style={[styles.whiteColor, variant.title1Semibold]}>{hospital?.replace(/\([^)]*\)/, '').trim()}</Text>
-                </View>
-                <Calendar
-                    style={{ marginBottom: 20 }}
-                    initialDate={initDate}
-                    monthFormat="yyyy년 MM월"
-                    markedDates={marked}
-                    onDayPress={(day) => {
-                        setSelected(day.dateString);
-                    }}
-                />
-                <View style={styles.calendarStringWrapper}>
-                    <CalendarMonth />
-                    <Text>{dayjs(initDate).format('YYYY년 MM월 DD일')}</Text>
-                    <View style={{ width: 26 }} />
-                </View>
-                <View style={styles.divider} />
-                <View style={styles.buttonWrapper}>
-                    <Text style={[{ color: 'white' }, variant.title1Semibold]}>예약 확정하기</Text>
-                </View>
-            </ShadowCard>
-        </ScreenWrapper>
+        <>
+            <ScreenWrapper style={styles.wrapper}>
+                <ShadowCard style={styles.shadowCard}>
+                    <View style={styles.textWrapper}>
+                        <Typo variant="title1Semibold" color="white">
+                            {`${data.name} `}
+                            <Typo variant="body1Medium" color="white">
+                                님
+                            </Typo>
+                        </Typo>
+                        <Typo variant="title1Semibold" color="white">
+                            {hospital?.replace(/\([^)]*\)/, '').trim()}
+                        </Typo>
+                    </View>
+                    <Calendar
+                        style={{ borderRadius: 14, paddingBottom: 20, marginBottom: 20 }}
+                        initialDate={initDate}
+                        monthFormat="yyyy년 MM월"
+                        markedDates={marked}
+                        renderHeader={(date) => {
+                            return (
+                                <View style={{ height: 96, padding: 25 }}>
+                                    <Typo variant="heading3Medium">{dayjs(date).format('YYYY년 MM월')}</Typo>
+                                </View>
+                            );
+                        }}
+                        onDayPress={(day) => {
+                            setSelected(day.dateString);
+                        }}
+                        hideArrows
+                    />
+                    <View style={styles.calendarStringWrapper}>
+                        <CalendarMonth />
+                        <Typo>{dayjs(selected).format('YYYY년 MM월 DD일')}</Typo>
+                        <View style={{ width: 26 }} />
+                    </View>
+                    <View style={styles.divider} />
+                    <TouchableOpacity onPress={() => setIsOpenModal(true)}>
+                        <View style={styles.buttonWrapper}>
+                            <Typo variant="title1Semibold" color="white">
+                                예약 확정하기
+                            </Typo>
+                        </View>
+                    </TouchableOpacity>
+                </ShadowCard>
+            </ScreenWrapper>
+            <ResidentRegistrationModal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} onSubmit={() => {}} />
+        </>
     );
 }
 

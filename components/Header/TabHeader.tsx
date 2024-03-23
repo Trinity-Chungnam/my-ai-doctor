@@ -1,10 +1,10 @@
 import {} from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import ArrowBackIcon from '../../assets/icons/arrow_back_ios';
-import { variant } from '../Text/token';
+import Typo from '../Text/Typo';
 
 export default function TabHeader(props: any) {
     const { top } = useSafeAreaInsets();
@@ -22,7 +22,12 @@ export default function TabHeader(props: any) {
                     <ArrowBackIcon />
                 </TouchableOpacity>
             ) : null}
-            <Text style={variant.heading1Bold}>{props.options.title}</Text>
+            <Typo variant="heading1Bold">{props.options.title}</Typo>
+            <View style={styles.right}>
+                {props.options?.headerRight
+                    ? props.options.headerRight?.({ tintColor: '', canGoBack: props.navigation.canGoBack() })
+                    : null}
+            </View>
         </View>
     );
 }
@@ -34,5 +39,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    right: {
+        marginLeft: 'auto',
     },
 });

@@ -2,10 +2,6 @@ import { Stack } from 'expo-router';
 
 import TabHeader from '../../components/Header/TabHeader';
 
-export const unstable_settings = {
-    initialRouteName: '(tabs)',
-};
-
 export default function Monitoring() {
     return (
         <Stack screenOptions={{ contentStyle: { backgroundColor: 'white' } }}>
