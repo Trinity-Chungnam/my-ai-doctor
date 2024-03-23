@@ -20,9 +20,9 @@ export function getTimeDifference(updateDateString: string) {
 export function getLastDays(date: string, length: number) {
     const days = [];
 
-    for (let i = 0; i <= length; i++) {
+    for (let i = 0; i < length; i++) {
         const day = dayjs(date).subtract(i, 'day').format('DD');
-        days.unshift(day); // 배열의 앞쪽에 추가하여 날짜 순으로 정렬
+        days.unshift(day);
     }
 
     return days;

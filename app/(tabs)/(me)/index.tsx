@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -7,51 +6,14 @@ import UpdateIcon from '../../../assets/icons/update';
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
 import Typo from '../../../components/Text/Typo';
-import { TextColorType } from '../../../components/Text/type';
+import { MENU_LIST } from '../../../constants/me';
+import { MY_SCREEN_DATA } from '../../../mocks/me';
 import { COLOR } from '../../../tokens/color';
 
 export default function MeScreen() {
     const { bottom } = useSafeAreaInsets();
     const router = useRouter();
-    const data = {
-        fetchDate: dayjs().format('YYYY년 MM월 DD일 HH:mm 기준'),
-        familyInfos: [
-            { id: 1, name: '마이진', birthday: '2012년 5월 30일생' },
-            { id: 2, name: '마할배', birthday: '1953년 12월 17일생' },
-        ],
-    };
-
-    const menuList: {
-        title: string;
-        color: TextColorType;
-        backGroundColor: TextColorType;
-    }[] = [
-        {
-            title: '진료기록',
-            color: 'black',
-            backGroundColor: 'white',
-        },
-        {
-            title: '예방접종 기록',
-            color: 'black',
-            backGroundColor: 'white',
-        },
-        {
-            title: '건강검진 기록',
-            color: 'black',
-            backGroundColor: 'white',
-        },
-        {
-            title: '나의 보험',
-            color: 'black',
-            backGroundColor: 'white',
-        },
-        {
-            title: '접종 / 국가건강검진 예약하기',
-            color: 'white',
-            backGroundColor: 'dark-grey-500',
-        },
-    ];
+    const data = MY_SCREEN_DATA;
 
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: bottom }}>
@@ -68,7 +30,7 @@ export default function MeScreen() {
                             {data.fetchDate}
                         </Typo>
                     </View>
-                    {menuList.map(({ title, backGroundColor, color }) => {
+                    {MENU_LIST.map(({ title, backGroundColor, color }) => {
                         return (
                             <View
                                 key={title}
@@ -93,18 +55,11 @@ export default function MeScreen() {
                             *가족을 누르면 상세데이터가 보여집니다
                         </Typo>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' }}>
+                    <View style={styles.familyCardContainer}>
                         {data.familyInfos.map(({ id, name, birthday }) => {
                             return (
                                 <TouchableOpacity
-                                    style={{
-                                        backgroundColor: 'white',
-                                        borderRadius: 14,
-                                        flex: 1,
-                                        gap: 20,
-                                        paddingVertical: 24,
-                                        alignItems: 'center',
-                                    }}
+                                    style={styles.familyCard}
                                     key={name + birthday}
                                     onPress={() => router.push(`/me/family-health-data/${id}`)}
                                     activeOpacity={0.9}
@@ -174,5 +129,20 @@ const styles = StyleSheet.create({
         gap: 20,
         borderRadius: 14,
         backgroundColor: COLOR.ORANGE[500],
+    },
+
+    familyCardContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        gap: 20,
+        flexWrap: 'wrap',
+    },
+    familyCard: {
+        backgroundColor: 'white',
+        borderRadius: 14,
+        flex: 1,
+        gap: 20,
+        paddingVertical: 24,
+        alignItems: 'center',
     },
 });

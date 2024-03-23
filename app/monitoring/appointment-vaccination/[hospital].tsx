@@ -10,6 +10,7 @@ import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
 import Typo from '../../../components/Text/Typo';
 import { COLOR } from '../../../tokens/color';
+
 LocaleConfig.locales['fr'] = {
     monthNames: [
         'Janvier',

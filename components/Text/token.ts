@@ -1,5 +1,5 @@
-import { COLOR } from '../../tokens/color';
 import { FontWeight, TextLightColor, VariantMap } from './type';
+import { COLOR } from '../../tokens/color';
 
 const fontWeights: FontWeight = {
     heavy: '900',
@@ -14,66 +14,79 @@ const fontWeights: FontWeight = {
 export const variantMap: VariantMap = {
     heading1Bold: {
         fontSize: 24,
+        lineHeight: 28,
         fontWeight: fontWeights.bold,
         fontFamily: 'Pretendard-Bold',
     },
     heading1Semibold: {
         fontSize: 24,
+        lineHeight: 28,
         fontWeight: fontWeights.semibold,
         fontFamily: 'Pretendard-SemiBold',
     },
     heading3Semibold: {
         fontSize: 20,
+        lineHeight: 24,
         fontWeight: fontWeights.semibold,
         fontFamily: 'Pretendard-SemiBold',
     },
     heading3Medium: {
         fontSize: 20,
+        lineHeight: 24,
         fontWeight: fontWeights.medium,
         fontFamily: 'Pretendard-Medium',
     },
     title1Semibold: {
         fontSize: 22,
+        lineHeight: 26,
         fontWeight: fontWeights.semibold,
         fontFamily: 'Pretendard-SemiBold',
     },
     title3Semibold: {
         fontSize: 18,
+        lineHeight: 22,
         fontWeight: fontWeights.semibold,
         fontFamily: 'Pretendard-Semibold',
     },
     title3Medium: {
         fontSize: 18,
+        lineHeight: 22,
         fontWeight: fontWeights.medium,
         fontFamily: 'Pretendard-Medium',
     },
     body1Medium: {
         fontSize: 16,
+        lineHeight: 20,
         fontWeight: fontWeights.medium,
         fontFamily: 'Pretendard-Medium',
     },
     body3Bold: {
         fontSize: 14,
+        lineHeight: 18,
         fontWeight: fontWeights.bold,
         fontFamily: 'Pretendard-Bold',
     },
     body4Semibold: {
         fontSize: 13,
+        lineHeight: 16,
         fontWeight: fontWeights.semibold,
         fontFamily: 'Pretendard-SemiBold',
     },
     body5Medium: {
         fontSize: 12,
+        lineHeight: 16,
         fontWeight: fontWeights.medium,
         fontFamily: 'Pretendard-Medium',
     },
     body7Semibold: {
         fontSize: 10,
+        lineHeight: 14,
         fontWeight: fontWeights.semibold,
         fontFamily: 'Pretendard-SemiBold',
     },
     body8Medium: {
         fontSize: 9,
+        lineHeight: 13,
         fontWeight: fontWeights.medium,
         fontFamily: 'Pretendard-Medium',
     },

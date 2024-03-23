@@ -23,6 +23,11 @@ export default function TabHeader(props: any) {
                 </TouchableOpacity>
             ) : null}
             <Typo variant="heading1Bold">{props.options.title}</Typo>
+            <View style={styles.right}>
+                {props.options?.headerRight
+                    ? props.options.headerRight?.({ tintColor: '', canGoBack: props.navigation.canGoBack() })
+                    : null}
+            </View>
         </View>
     );
 }
@@ -34,5 +39,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    right: {
+        marginLeft: 'auto',
     },
 });

@@ -3,31 +3,19 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
+import Button from '../../../components/Button/Button';
 import GoogleMapModal from '../../../components/Modal/GoogleMapModal';
 import ScreenWrapper from '../../../components/ScreenWrapper';
 import ShadowCard from '../../../components/ShadowCard';
 import Typo from '../../../components/Text/Typo';
+import { MONITORING_DATA } from '../../../mocks/monitoring';
 import { COLOR } from '../../../tokens/color';
 
 export default function HomeScreen() {
     const [isOpenGoogleMapModal, setIsOpenGoogleMapModal] = useState(false);
     const router = useRouter();
     const [search, setSearch] = useState('');
-    const data = {
-        id: '123',
-        name: '마이닥',
-        healthyAge: {
-            origin: 48,
-            compare: 4,
-        },
-        waring: '간암',
-        ageGroupAverage: {
-            origin: '보통',
-            compare: -6,
-        },
-        recommendedExercise: '유산소 운동',
-        recommendedDiet: 'DASH 식단',
-    };
+    const data = MONITORING_DATA;
 
     return (
         <>
@@ -135,6 +123,13 @@ export default function HomeScreen() {
                                     <Typo variant="body1Medium">대상포진 예방접종</Typo>
                                 </View>
                             </TouchableOpacity>
+                            <Button
+                                label="B형간영 예방접종"
+                                onPress={() => {
+                                    setSearch('씨앤뉴 내과 (전남 무안군 삼향읍 유교길 1)');
+                                    setIsOpenGoogleMapModal(true);
+                                }}
+                            />
                         </View>
                     </View>
                 </ScreenWrapper>

@@ -25,6 +25,7 @@ export type VariantMap = {
         fontSize: number;
         fontWeight: TextStyle['fontWeight'];
         fontFamily: string;
+        lineHeight: number;
     };
 };
 
