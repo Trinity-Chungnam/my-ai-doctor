@@ -1,5 +1,5 @@
-import { FontWeight, TextLightColor, VariantMap } from './type';
 import { COLOR } from '../../tokens/color';
+import { FontWeight, TextLightColor, VariantMap } from './type';
 
 const fontWeights: FontWeight = {
     heavy: '900',
@@ -56,7 +56,7 @@ export const variantMap: VariantMap = {
     },
     body1Medium: {
         fontSize: 16,
-        lineHeight: 20,
+        lineHeight: 26,
         fontWeight: fontWeights.medium,
         fontFamily: 'Pretendard-Medium',
     },
@@ -68,7 +68,7 @@ export const variantMap: VariantMap = {
     },
     body4Semibold: {
         fontSize: 13,
-        lineHeight: 16,
+        lineHeight: 24,
         fontWeight: fontWeights.semibold,
         fontFamily: 'Pretendard-SemiBold',
     },

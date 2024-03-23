@@ -16,7 +16,7 @@ export default function MeScreen() {
     const data = MY_SCREEN_DATA;
 
     return (
-        <ScrollView contentContainerStyle={{ paddingBottom: Platform.select({ ios: bottom, android: 10, default: 10 }) }}>
+        <ScrollView contentContainerStyle={{ paddingBottom: Platform.select({ ios: bottom, android: 20 }) }}>
             <ScreenWrapper style={styles.wrapper}>
                 <ShadowCard style={styles.shadowCard}>
                     <View style={styles.cardContainer}>

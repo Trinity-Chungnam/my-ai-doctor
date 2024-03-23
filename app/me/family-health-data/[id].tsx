@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { Image } from 'expo-image';
 import { useState } from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { Platform, ScrollView, StyleSheet, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { AbstractChartConfig } from 'react-native-chart-kit/dist/AbstractChart';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -68,7 +68,7 @@ export default function FamilyHealthDataScreen() {
     };
 
     return (
-        <ScrollView contentContainerStyle={{ paddingBottom: bottom }}>
+        <ScrollView contentContainerStyle={{ paddingBottom: Platform.select({ ios: bottom, android: 20 }) }}>
             <ScreenWrapper style={styles.wrapper}>
                 <View style={styles.dataWrapper}>
                     <TouchableOpacity onPress={handlePressPrevDate}>
@@ -125,6 +125,9 @@ export default function FamilyHealthDataScreen() {
                                                 </Typo>
                                             </Typo>
                                         </View>
+                                    </View>
+                                    <View style={{ paddingHorizontal: 4, marginBottom: 4 }}>
+                                        <View style={{ height: 1, backgroundColor: COLOR.DARK_GREY[500], opacity: 0.25 }} />
                                     </View>
                                     <View style={styles.detailCardLastTime}>
                                         <Typo variant="body8Medium" color="dark-grey-500">
