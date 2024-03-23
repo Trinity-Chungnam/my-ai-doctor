@@ -28,7 +28,7 @@ export default function ReservationModal({ isOpen, onClose, onSubmit }: Reservat
                                         위험 감지
                                     </Typo>
                                     <Typo variant="body1Medium" color="dark-grey-500">
-                                        "신청"
+                                        "신장"
                                     </Typo>
                                 </View>
                                 <View style={{ marginBottom: 66 }}>

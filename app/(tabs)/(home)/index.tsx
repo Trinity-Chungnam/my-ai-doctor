@@ -52,17 +52,17 @@ export default function HomeScreen() {
                 <View style={styles.bodyInfoCard}>
                     <Typo variant="title1Semibold">신체 정보</Typo>
                     <View style={styles.bodyInfoSubCard}>
-                        <Typo variant="body1Medium">
+                        <Typo variant="title3Semibold">
                             {data.height}
-                            <Typo variant="body4Semibold">cm</Typo>
+                            <Typo variant="body1Medium">cm</Typo>
                         </Typo>
-                        <Typo variant="body1Medium">
+                        <Typo variant="title3Semibold">
                             {data.weight}
-                            <Typo variant="body4Semibold">kg</Typo>
+                            <Typo variant="body1Medium">kg</Typo>
                         </Typo>
-                        <Typo variant="body1Medium">
+                        <Typo variant="title3Semibold">
                             {data.temperature}
-                            <Typo variant="body4Semibold">℃</Typo>
+                            <Typo variant="body1Medium">℃</Typo>
                         </Typo>
                     </View>
                 </View>
@@ -102,7 +102,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     wrapper: {
         padding: 20,
-        gap: 20,
+        gap: 12,
     },
     shadowCard: {
         gap: 20,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         borderRadius: 14,
-        paddingVertical: 7,
+        paddingVertical: 5,
         paddingLeft: 47,
         paddingRight: 13,
     },
@@ -158,7 +158,8 @@ const styles = StyleSheet.create({
     },
     bodyInfoCard: {
         backgroundColor: COLOR.LIGHT_GREY[500],
-        padding: 20,
+        paddingVertical: 15,
+        paddingHorizontal: 20,
         borderRadius: 14,
         gap: 20,
     },
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
     },
     diseaseSubCard: {
         paddingTop: 20,
-        paddingBottom: 47,
+        paddingBottom: 35,
         gap: 25,
         flex: 1,
         alignItems: 'center',

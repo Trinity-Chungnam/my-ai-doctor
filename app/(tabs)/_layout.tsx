@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
+import { Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import AccountCircle from '../../assets/icons/account_circle';
@@ -19,7 +20,8 @@ export default function TabLayout() {
         <Tabs
             screenOptions={{
                 tabBarStyle: {
-                    height: 56 + bottom,
+                    height: 56 + Platform.select({ ios: bottom, android: 10, default: 10 }),
+                    paddingBottom: Platform.select({ ios: bottom, android: 10, default: 10 }),
                 },
                 headerTitleStyle: {
                     fontSize: 12,

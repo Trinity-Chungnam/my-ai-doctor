@@ -6,7 +6,7 @@ import { Calendar, LocaleConfig } from 'react-native-calendars';
 
 import CalendarMonth from '../../../assets/icons/calendar_month';
 import ResidentRegistrationModal from '../../../components/Modal/ResidentRegistrationModal';
-import ScreenWrapper from '../../../components/ScreenWrapper';
+import ScrollViewWrapper from '../../../components/ScrollViewWrapper';
 import ShadowCard from '../../../components/ShadowCard';
 import Typo from '../../../components/Text/Typo';
 import { COLOR } from '../../../tokens/color';
@@ -54,7 +54,7 @@ export default function AppointmentVaccinationScreen() {
 
     return (
         <>
-            <ScreenWrapper style={styles.wrapper}>
+            <ScrollViewWrapper contentContainerStyle={styles.wrapper}>
                 <ShadowCard style={styles.shadowCard}>
                     <View style={styles.textWrapper}>
                         <Typo variant="title1Semibold" color="white">
@@ -98,7 +98,7 @@ export default function AppointmentVaccinationScreen() {
                         </View>
                     </TouchableOpacity>
                 </ShadowCard>
-            </ScreenWrapper>
+            </ScrollViewWrapper>
             <ResidentRegistrationModal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} onSubmit={() => {}} />
         </>
     );

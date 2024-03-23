@@ -97,36 +97,23 @@ export default function HomeScreen() {
 
                     <View style={styles.vaccinationCard}>
                         <View style={styles.vaccinationCardTitle}>
-                            <Typo variant="title1Semibold">추천 예방접종</Typo>
+                            <Typo variant="title1Semibold">추천 접종</Typo>
                             <Typo variant="body5Medium" color="dark-grey-500">
                                 *접종명을 누르면 접종 예약이 가능합니다
                             </Typo>
                         </View>
                         <View style={styles.vaccinationSubCardWrapper}>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    setSearch('씨앤뉴 내과 (전남 무안군 삼향읍 유교길 1)');
-                                    setIsOpenGoogleMapModal(true);
-                                }}
-                            >
-                                <View style={styles.vaccinationItem}>
-                                    <Typo variant="body1Medium">B형간염 예방접종</Typo>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    setSearch('아이엘 피부과 (전남 무안군 삼향읍 유교길 6)');
-                                    setIsOpenGoogleMapModal(true);
-                                }}
-                            >
-                                <View style={styles.vaccinationItem}>
-                                    <Typo variant="body1Medium">대상포진 예방접종</Typo>
-                                </View>
-                            </TouchableOpacity>
                             <Button
                                 label="B형간영 예방접종"
                                 onPress={() => {
                                     setSearch('씨앤뉴 내과 (전남 무안군 삼향읍 유교길 1)');
+                                    setIsOpenGoogleMapModal(true);
+                                }}
+                            />
+                            <Button
+                                label="대상포진 예방접종"
+                                onPress={() => {
+                                    setSearch('아이엘 피부과 (전남 무안군 삼향읍 유교길 6)');
                                     setIsOpenGoogleMapModal(true);
                                 }}
                             />

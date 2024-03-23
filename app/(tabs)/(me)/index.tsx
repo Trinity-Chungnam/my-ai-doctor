@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import UpdateIcon from '../../../assets/icons/update';
@@ -16,7 +16,7 @@ export default function MeScreen() {
     const data = MY_SCREEN_DATA;
 
     return (
-        <ScrollView contentContainerStyle={{ paddingBottom: bottom }}>
+        <ScrollView contentContainerStyle={{ paddingBottom: Platform.select({ ios: bottom, android: 10, default: 10 }) }}>
             <ScreenWrapper style={styles.wrapper}>
                 <ShadowCard style={styles.shadowCard}>
                     <View style={styles.cardContainer}>
