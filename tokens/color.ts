@@ -17,4 +17,7 @@ export const COLOR = {
     RED: {
         500: '#FF0000',
     },
+    YELLOW: {
+        500: '#FFB600',
+    },
 };

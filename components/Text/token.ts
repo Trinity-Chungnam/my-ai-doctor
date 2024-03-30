@@ -24,6 +24,12 @@ export const variantMap: VariantMap = {
         fontWeight: fontWeights.semibold,
         fontFamily: 'Pretendard-SemiBold',
     },
+    heading3Bold: {
+        fontSize: 20,
+        lineHeight: 24,
+        fontWeight: fontWeights.bold,
+        fontFamily: 'Pretendard-Bold',
+    },
     heading3Semibold: {
         fontSize: 20,
         lineHeight: 24,
@@ -35,6 +41,12 @@ export const variantMap: VariantMap = {
         lineHeight: 24,
         fontWeight: fontWeights.medium,
         fontFamily: 'Pretendard-Medium',
+    },
+    title1Bold: {
+        fontSize: 22,
+        lineHeight: 26,
+        fontWeight: fontWeights.bold,
+        fontFamily: 'Pretendard-Bold',
     },
     title1Semibold: {
         fontSize: 22,
@@ -60,6 +72,12 @@ export const variantMap: VariantMap = {
         fontWeight: fontWeights.medium,
         fontFamily: 'Pretendard-Medium',
     },
+    body1: {
+        fontSize: 16,
+        lineHeight: 26,
+        fontWeight: fontWeights.regular,
+        fontFamily: 'Pretendard-Regular',
+    },
     body3Bold: {
         fontSize: 14,
         lineHeight: 18,
@@ -71,6 +89,12 @@ export const variantMap: VariantMap = {
         lineHeight: 24,
         fontWeight: fontWeights.semibold,
         fontFamily: 'Pretendard-SemiBold',
+    },
+    body4: {
+        fontSize: 13,
+        lineHeight: 24,
+        fontWeight: fontWeights.regular,
+        fontFamily: 'Pretendard-Regular',
     },
     body5Medium: {
         fontSize: 12,
@@ -99,6 +123,7 @@ export const textColor: TextLightColor = {
     'dark-grey-500': COLOR.DARK_GREY[500],
     'light-gray-500': COLOR.LIGHT_GREY[500],
     black: '#000000',
+    'yellow-500': COLOR.YELLOW[500],
     'red-500': COLOR.RED[500],
 };
 

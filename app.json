@@ -3,7 +3,7 @@
         "scheme": "my-ai-doctor",
         "name": "my-ai-doctor",
         "slug": "my-ai-doctor",
-        "version": "1.0.2",
+        "version": "1.0.6",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
         "userInterfaceStyle": "light",
@@ -16,14 +16,23 @@
         "ios": {
             "supportsTablet": true,
             "bundleIdentifier": "com.yunchanpark1.myaidoctor",
-            "usesNonExemptEncryption": false
+            "usesNonExemptEncryption": false,
+            "config": {
+                "googleMapsApiKey": "AIzaSyAB3VJHyo29T4QAaktFORdZIPxs1GxRaP0"
+            }
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             },
-            "package": "com.yunchanpark1.myaidoctor"
+            "package": "com.yunchanpark1.myaidoctor",
+            "config": {
+                "googleMaps": {
+                    "apiKey": "AIzaSyAB3VJHyo29T4QAaktFORdZIPxs1GxRaP0"
+                }
+            },
+            "versionCode": "4"
         },
         "web": {
             "favicon": "./assets/favicon.png",
