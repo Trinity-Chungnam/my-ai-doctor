@@ -66,6 +66,12 @@ export const variantMap: VariantMap = {
         fontWeight: fontWeights.medium,
         fontFamily: 'Pretendard-Medium',
     },
+    body1Semibold: {
+        fontSize: 16,
+        lineHeight: 16,
+        fontWeight: fontWeights.semibold,
+        fontFamily: 'Pretendard-Semibold',
+    },
     body1Medium: {
         fontSize: 16,
         lineHeight: 26,

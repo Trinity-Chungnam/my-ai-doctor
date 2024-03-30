@@ -33,6 +33,7 @@ export default function RootLayout() {
         <Stack initialRouteName="(tabs)">
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="monitoring" options={{ headerShown: false }} />
+            <Stack.Screen name="telemedicine" options={{ headerShown: false }} />
             <Stack.Screen name="me" options={{ headerShown: false }} />
         </Stack>
     );

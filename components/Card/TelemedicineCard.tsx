@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import Typo from '../Text/Typo';
 import { TextColorType } from '../Text/type';
@@ -8,15 +8,18 @@ type TelemedicineCardProps = {
     borderColor?: string;
     color?: TextColorType;
     label: string;
+    onPress?(): void;
 };
 
-export default function TelemedicineCard({ label, color, borderColor }: TelemedicineCardProps) {
+export default function TelemedicineCard({ label, color, borderColor, onPress }: TelemedicineCardProps) {
     return (
-        <View style={[styles.shadowBox, styles.wrapper, { borderColor }]}>
-            <Typo variant="heading1Bold" color={color}>
-                {label}
-            </Typo>
-        </View>
+        <TouchableOpacity onPress={onPress}>
+            <View style={[styles.shadowBox, styles.wrapper, { borderColor }]}>
+                <Typo variant="heading1Bold" color={color}>
+                    {label}
+                </Typo>
+            </View>
+        </TouchableOpacity>
     );
 }
 

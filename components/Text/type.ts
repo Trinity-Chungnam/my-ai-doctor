@@ -17,6 +17,7 @@ export type VariantType =
     | 'title3Medium'
     | 'body1'
     | 'body1Medium'
+    | 'body1Semibold'
     | 'body3Bold'
     | 'body4Semibold'
     | 'body4'
